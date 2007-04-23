@@ -8,7 +8,6 @@ License: Distributable
 Group: System/Internationalization
 Source: http://www.linuxshare.ru/projects/trans/manpages-ru-%{version}.tar.bz2  
 Source2: man-pages-%LANG-goodies.tar.bz2
-Icon: books-%LANG.xpm
 URL: http://www.linuxshare.ru/projects/trans/mans.html
 Buildroot: %_tmppath/%name-root
 BuildRequires: man => 1.5j-8mdk
