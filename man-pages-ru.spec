@@ -9,7 +9,6 @@ Group: System/Internationalization
 Source: http://www.linuxshare.ru/projects/trans/manpages-ru-%{version}.tar.bz2  
 Source2: man-pages-%LANG-goodies.tar.bz2
 URL: http://www.linuxshare.ru/projects/trans/mans.html
-Buildroot: %_tmppath/%name-root
 BuildRequires: man => 1.5j-8mdk
 Requires: locales-%LANG, man => 1.5j-8mdk
 Requires(post): sed grep man
