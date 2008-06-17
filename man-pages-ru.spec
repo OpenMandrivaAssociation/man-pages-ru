@@ -3,7 +3,7 @@
 Summary: Russian man (manual) pages from the Linux Documentation Project
 Name: man-pages-%LANG
 Version: 0.98
-Release: %mkrel 3
+Release: %mkrel 4
 License: Distributable
 Group: System/Internationalization
 Source: http://www.linuxshare.ru/projects/trans/manpages-ru-%{version}.tar.bz2  
