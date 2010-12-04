@@ -1,22 +1,22 @@
-%define LANG ru
+%define LNG ru
 
 Summary: Russian man (manual) pages from the Linux Documentation Project
-Name: man-pages-%LANG
+Name: man-pages-%LNG
 Version: 0.98
 Release: %mkrel 7
 License: Distributable
 Group: System/Internationalization
 Source: http://www.linuxshare.ru/projects/trans/manpages-ru-%{version}.tar.bz2  
-Source2: man-pages-%LANG-goodies.tar.bz2
+Source2: man-pages-%LNG-goodies.tar.bz2
 URL: http://www.linuxshare.ru/projects/trans/mans.html
-Buildroot: %_tmppath/%name-root
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: man => 1.5j-8mdk
-Requires: locales-%LANG, man => 1.5j-8mdk
+Requires: locales-%LNG, man => 1.5j-8mdk
 Requires(post): sed grep man
 Autoreq: false
 BuildArch: noarch
-Obsoletes: man-%LANG, manpages-%LANG
-Provides: man-%LANG, manpages-%LANG
+Obsoletes: man-%LNG, manpages-%LNG
+Provides: man-%LNG, manpages-%LNG
 
 
 %description
@@ -30,37 +30,37 @@ Documentation Project (LDP), translated to Russian.
 %build
 
 %install
-rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT/%_mandir/%LANG/
-mkdir -p $RPM_BUILD_ROOT/var/catman/%LANG/cat{1,2,3,4,5,6,7,8,9,n}
+rm -rf %{buildroot}
+mkdir -p %{buildroot}/%_mandir/%LNG/
+mkdir -p %{buildroot}/var/catman/%LNG/cat{1,2,3,4,5,6,7,8,9,n}
 
 for i in 1 2 5 7 8; do
-	cp -adpvrf man$i $RPM_BUILD_ROOT/%_mandir/%LANG/
+	cp -adpvrf man$i %{buildroot}/%_mandir/%LNG/
 done
 
-tar jxf %SOURCE2 -C $RPM_BUILD_ROOT/usr/share
+tar jxf %SOURCE2 -C %{buildroot}/usr/share
 
-LANG=%LANG DESTDIR=$RPM_BUILD_ROOT /usr/sbin/makewhatis $RPM_BUILD_ROOT/%_mandir/%LANG
+LANG=%LNG DESTDIR=%{buildroot} %{_sbindir}/makewhatis %{buildroot}/%_mandir/%LNG
 
-mkdir -p $RPM_BUILD_ROOT/etc/cron.weekly
-cat > $RPM_BUILD_ROOT/etc/cron.weekly/makewhatis-%LANG.cron << EOF
+mkdir -p %{buildroot}%{_sysconfdir}/cron.weekly
+cat > %{buildroot}%{_sysconfdir}/cron.weekly/makewhatis-%LNG.cron << EOF
 #!/bin/bash
-LANG=%LANG /usr/sbin/makewhatis %_mandir/%LANG
+LANG=%LNG %{_sbindir}/makewhatis %_mandir/%LNG
 exit 0
 EOF
-chmod a+x $RPM_BUILD_ROOT/etc/cron.weekly/makewhatis-%LANG.cron
+chmod a+x %{buildroot}%{_sysconfdir}/cron.weekly/makewhatis-%LNG.cron
 
-mkdir -p  $RPM_BUILD_ROOT/var/cache/man/%LANG
+mkdir -p  %{buildroot}/var/cache/man/%LNG
 
-touch $RPM_BUILD_ROOT/var/cache/man/%LNG/whatis
+touch %{buildroot}/var/cache/man/%LNG/whatis
 
 %postun
 # 0 means deleting the package
 if [ "$1" = "0" ]; then
-   ## Force removing of /var/catman/%LANG, if there isn't any man page
-   ## directory /%_mandir/%LANG
-   if [ ! -d %_mandir/%LANG ] ; then
-       rm -rf /var/catman/%LANG
+   ## Force removing of /var/catman/%LNG, if there isn't any man page
+   ## directory /%_mandir/%LNG
+   if [ ! -d %_mandir/%LNG ] ; then
+       rm -rf /var/catman/%LNG
    fi
 fi
 
@@ -68,15 +68,16 @@ fi
 %create_ghostfile /var/cache/man/%LNG/whatis root root 644
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files
 %defattr(0644,root,root,0755) 
 %doc CREDITS FAQ NEWS
 %defattr(0644,root,man,755)
-%dir %_mandir/%LANG
-%dir /var/cache/man/%LANG
+%dir %_mandir/%LNG
+%dir /var/cache/man/%LNG
 %ghost %config(noreplace) /var/cache/man/%LNG/whatis
-%_mandir/%LANG/man*
-%attr(755,root,man)/var/catman/%LANG
-%config(noreplace) %attr(755,root,root)/etc/cron.weekly/makewhatis-%LANG.cron
+%_mandir/%LNG/man*
+%_mandir/%LNG/whatis
+%attr(755,root,man) /var/catman/%LNG
+%config(noreplace) %attr(755,root,root) %{_sysconfdir}/cron.weekly/makewhatis-%LNG.cron
