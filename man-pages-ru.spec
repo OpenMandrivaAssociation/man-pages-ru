@@ -3,7 +3,7 @@
 Summary: Russian man (manual) pages from the Linux Documentation Project
 Name: man-pages-%LNG
 Version: 0.98
-Release: %mkrel 7
+Release: %mkrel 8
 License: Distributable
 Group: System/Internationalization
 Source: http://www.linuxshare.ru/projects/trans/manpages-ru-%{version}.tar.bz2  
