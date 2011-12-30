@@ -3,7 +3,7 @@
 Summary: Russian man (manual) pages from the Linux Documentation Project
 Name: man-pages-%LNG
 Version: 0.98
-Release: %mkrel 10
+Release: %mkrel 11
 License: Distributable
 Group: System/Internationalization
 Source: http://www.linuxshare.ru/projects/trans/manpages-ru-%{version}.tar.bz2  
@@ -26,6 +26,9 @@ Documentation Project (LDP), translated to Russian.
 %prep
 
 %setup -q -n manpages-ru-%version
+
+#fix due install error with other packages
+rm -f man1/dosemu*
 
 %build
 
