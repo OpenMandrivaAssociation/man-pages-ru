@@ -3,7 +3,7 @@
 Summary: Russian man (manual) pages from the Linux Documentation Project
 Name: man-pages-%LNG
 Version: 0.98
-Release: %mkrel 11
+Release: 14
 License: Distributable
 Group: System/Internationalization
 Source: http://www.linuxshare.ru/projects/trans/manpages-ru-%{version}.tar.bz2  
@@ -27,9 +27,6 @@ Documentation Project (LDP), translated to Russian.
 
 %setup -q -n manpages-ru-%version
 
-#fix due install error with other packages
-rm -f man1/dosemu*
-
 %build
 
 %install
@@ -42,6 +39,9 @@ for i in 1 2 5 7 8; do
 done
 
 tar jxf %SOURCE2 -C %{buildroot}/usr/share
+
+#Some hacks
+rm -f %{buildroot}/%{_mandir}/%LNG/man1/dosemu*
 
 LANG=%LNG DESTDIR=%{buildroot} %{_sbindir}/makewhatis %{buildroot}/%_mandir/%LNG
 
@@ -84,3 +84,62 @@ rm -rf %{buildroot}
 %_mandir/%LNG/whatis
 %attr(755,root,man) /var/catman/%LNG
 %config(noreplace) %attr(755,root,root) %{_sysconfdir}/cron.weekly/makewhatis-%LNG.cron
+
+
+%changelog
+* Sun Aug 14 2011 Александр Казанцев <kazancas@mandriva.org> 0.98-10mdv2011.0
++ Revision: 694452
+- add new ru manpages.
+
+* Wed May 04 2011 Oden Eriksson <oeriksson@mandriva.com> 0.98-9
++ Revision: 666376
+- mass rebuild
+
+* Sat Dec 04 2010 Oden Eriksson <oeriksson@mandriva.com> 0.98-8mdv2011.0
++ Revision: 609327
+- rebuild
+
+* Sat Dec 04 2010 Oden Eriksson <oeriksson@mandriva.com> 0.98-7mdv2011.0
++ Revision: 609310
+- fix build
+- fix typos
+- fix build
+- rebuild
+- rebuilt for 2010.1
+
+* Sat Mar 07 2009 Antoine Ginies <aginies@mandriva.com> 0.98-5mdv2009.1
++ Revision: 351585
+- rebuild
+
+* Tue Jun 17 2008 Thierry Vignaud <tv@mandriva.org> 0.98-4mdv2009.0
++ Revision: 223194
+- rebuild
+
+* Tue Jan 15 2008 Thierry Vignaud <tv@mandriva.org> 0.98-3mdv2008.1
++ Revision: 152996
+- rebuild
+- rebuild
+- kill re-definition of %%buildroot on Pixel's request
+
+  + Olivier Blin <blino@mandriva.org>
+    - restore BuildRoot
+
+* Mon Apr 23 2007 Thierry Vignaud <tv@mandriva.org> 0.98-1mdv2008.0
++ Revision: 17425
+- kill icon
+- new release
+
+
+* Wed May 10 2006 Thierry Vignaud <tvignaud@mandriva.com> 0.97-3mdk
+- fix post scripts (thx gwenole)
+
+* Wed May 10 2006 Thierry Vignaud <tvignaud@mandriva.com> 0.97-2mdk
+- use %%mkrel
+- rpmlint cleanups
+
+* Thu Jul 29 2004 Thierry Vignaud <tvignaud@mandrakesoft.com> 0.97-1mdk
+- new release
+
+* Thu Jul 24 2003 Per �yvind Karlsen <peroyvind@sintrax.net> 0.7-2mdk
+- rebuild
+
