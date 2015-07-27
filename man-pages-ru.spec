@@ -4,7 +4,7 @@
 Summary:	Russian man (manual) pages from the Linux Documentation Project
 Name:		man-pages-%{LNG}
 Version:	3.41
-Release:	23
+Release:	24
 License:	Distributable
 Group:		System/Internationalization
 Url:		http://www.linuxshare.ru/projects/trans/mans.html
@@ -79,7 +79,6 @@ fi
 
 %files
 %doc CREDITS FAQ NEWS
-%dir %_mandir/%{LNG}
 %dir /var/cache/man/%{LNG}
 %ghost %config(noreplace) /var/cache/man/%{LNG}/whatis
 %_mandir/%{LNG}/man*
@@ -88,4 +87,3 @@ fi
 %_mandir/%{LNG}/index.db*
 %attr(755,root,man) /var/catman/%{LNG}
 %config(noreplace) %attr(755,root,root) %{_sysconfdir}/cron.weekly/makewhatis-%{LNG}.cron
-
