@@ -4,7 +4,7 @@
 Summary:	Russian man (manual) pages from the Linux Documentation Project
 Name:		man-pages-%{LNG}
 Version:	3.41
-Release:	25
+Release:	26
 License:	Distributable
 Group:		System/Internationalization
 Url:		http://www.linuxshare.ru/projects/trans/mans.html
@@ -15,7 +15,9 @@ BuildArch:	noarch
 BuildRequires:	man
 Requires:	locales-%{LNG}
 Requires:	man
-Requires(post):	sed grep man
+Requires(post):	sed
+Requires(post):	grep
+Requires(post):	man
 Autoreq:	false
 Conflicts:	filesystem < 3.0-17
 
