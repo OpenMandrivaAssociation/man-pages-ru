@@ -3,7 +3,7 @@
 
 Summary:	Russian man (manual) pages from the Linux Documentation Project
 Name:		man-pages-%{LNG}
-Version:	3.41
+Version:	4.17
 Release:	28
 License:	Distributable
 Group:		System/Internationalization
