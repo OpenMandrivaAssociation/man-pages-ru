@@ -3,8 +3,8 @@
 
 Summary:	Russian man (manual) pages from the Linux Documentation Project
 Name:		man-pages-%{LNG}
-Version:	4.17
-Release:	28
+Version:	5.00
+Release:	1
 License:	Distributable
 Group:		System/Internationalization
 Url:		http://www.linuxshare.ru/projects/trans/mans.html
