@@ -3,7 +3,7 @@
 
 Summary:	Russian man (manual) pages from the Linux Documentation Project
 Name:		man-pages-%{LNG}
-Version:	5.00
+Version:	5.03
 Release:	1
 License:	Distributable
 Group:		System/Internationalization
