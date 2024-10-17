@@ -7,7 +7,7 @@ Version:	5.03_20191017
 Release:	1
 License:	Distributable
 Group:		System/Internationalization
-Url:		http://www.linuxshare.ru/projects/trans/mans.html
+Url:		https://www.linuxshare.ru/projects/trans/mans.html
 Source0:	http://www.linuxshare.ru/projects/trans/manpages-ru-0.98.tar.bz2  
 Source2:	man-pages-%{LNG}-goodies.tar.bz2
 Source3:	man-pages-ru_%{tarball_version}.tar.bz2
